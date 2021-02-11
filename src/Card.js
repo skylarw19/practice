@@ -6,7 +6,9 @@ const Card = (props) => {
         <div className="card">
             <input type="checkbox"></input>
             <label>{props.todo}</label>
-            <button>Delete</button>
+            <button 
+                onClick={() => props.deleteTodo(props.idx)}
+            >Delete</button>
         </div>
     );
 }

@@ -27,6 +27,12 @@ class TodoList extends Component {
         })
     }
 
+    deleteTodo = (idx) => {
+        this.setState({
+            todos: this.state.todos.filter((todo, i) => i !== idx)
+        })
+    }
+
     render(){
         return (
         <>
@@ -45,6 +51,8 @@ class TodoList extends Component {
                     <Card
                         key={i}
                         todo={todo}
+                        idx={i}
+                        deleteTodo={this.deleteTodo}
                     />
                 )}
             </div>
