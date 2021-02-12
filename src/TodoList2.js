@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Card from './Card.js'
+import AddTodo2 from './AddTodo2.js'
 
-class TodoList extends Component {
+class TodoList2 extends Component {
     constructor(props){
         super(props);
         this.state = {
             todos: [],
             showForm: false,
-            newTodo: "",
         }
     }
 
@@ -18,48 +18,36 @@ class TodoList extends Component {
         console.log(this.state.todos)
     }
 
-    showForm = () =>{
+    showAddTodo = () => {
         this.setState({showForm: true})
     }
-    
-    handleFormInput = (e) => {
-        this.setState({newTodo: e.target.value})
-    }
 
-    addTodo = (e) => {
-        e.preventDefault();
+    addNewTodo = (newTodo) => {
+        console.log(newTodo)
         this.setState({
-            todos: [...this.state.todos, {name: this.state.newTodo}],
-            showForm: false
-        })
-    }
-
-    deleteTodo = (idx) => {
-        this.setState({
-            todos: this.state.todos.filter((todo, i) => i !== idx)
+            todos: [...this.state.todos, {name: newTodo}],
+            showForm: false,
         })
     }
 
     render(){
         return (
         <>
-            <h1>Todo List</h1>
-            <button onClick={this.showForm}>Add Todo</button>
+            <h1>Todo List 2</h1>
+            <button onClick={this.showAddTodo} >Add Todo</button>
             {this.state.showForm ?
-                <form onSubmit={this.addTodo}>
-                    <input onChange={this.handleFormInput} placeholder="add a todo item"></input>
-                </form> 
+                <AddTodo2
+                    addNewTodo={this.addNewTodo}
+                />
             :
-            <></>   
+                <></>
             }
-
             <div className="todo-list">
                 {this.state.todos.map((todo, i) =>
                     <Card
                         key={i}
                         todo={todo.name}
-                        idx={i}
-                        deleteTodo={this.deleteTodo}
+                        idx={i}    
                     />
                 )}
             </div>
@@ -68,4 +56,4 @@ class TodoList extends Component {
     }
 }
 
-export default TodoList;
+export default TodoList2;
